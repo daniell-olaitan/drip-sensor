@@ -39,7 +39,7 @@ void OnDataRecv(uint8_t * mac_addr, uint8_t *incomingData, uint8_t len) {
   Serial.printf("Board ID %u: %u bytes\n", myData.id, len);
   // Update the structures with the new incoming data
   boardsStruct[myData.id-1].x = myData.x;
-  delay(1000);
+  //delay(1000);
   Serial.printf("x value: %d \n", boardsStruct[myData.id-1].x);
   Serial.println();
 }
@@ -52,8 +52,6 @@ void setup() {
   pinMode(s3g, OUTPUT);
   pinMode(s3r, OUTPUT);
   pinMode(buzz, OUTPUT);
-
-
 
   // Initialize Serial Monitor
   Serial.begin(115200);
@@ -72,7 +70,6 @@ void setup() {
   // get recv packer info
   esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
   esp_now_register_recv_cb(OnDataRecv);
-
   
 }
 
@@ -86,37 +83,38 @@ void loop()
   
   if (space1 > 3 && space1 < 10) {
     // Turn on the red LED (s1r) and turn off the green LED (s1g)
-    digitalWrite(s1r, HIGH);
     digitalWrite(s1g, LOW);
+    digitalWrite(s1r, HIGH);
     digitalWrite(buzz, HIGH);
-  } else if (space1 >= 11) {
+  } 
+  
+  else if (space1 >= 11) {
     // Turn on the green LED (s1g) and turn off the red LED (s1r)
-    digitalWrite(s1g, HIGH);
     digitalWrite(s1r, LOW);
+    digitalWrite(s1g, HIGH);
     digitalWrite(buzz, LOW);
   } 
   
-
-  else if (space2 > 3 && space2 < 10) {
+  if (space2 > 3 && space2 < 10) {
     // Turn on the red LED (s1r) and turn off the green LED (s1g)
-    digitalWrite(s2r, HIGH);
     digitalWrite(s2g, LOW);
+    digitalWrite(s2r, HIGH);
     digitalWrite(buzz, HIGH);
-  } else if (space2 >= 11) {
+  } 
+  
+  else if (space2 >= 11) {
     // Turn on the green LED (s1g) and turn off the red LED (s1r)
-    digitalWrite(s2g, HIGH);
     digitalWrite(s2r, LOW);
+    digitalWrite(s2g, HIGH);
     digitalWrite(buzz, LOW);
   } 
   
-  
-  else {
+  if (space1 < 3 && space2 < 3) {
     // Turn off both LEDs when b is zero
     digitalWrite(s1r, LOW);
     digitalWrite(s1g, LOW);
     digitalWrite(buzz, LOW);
     digitalWrite(s2r, LOW);
     digitalWrite(s2g, LOW);
-  
   }
  }

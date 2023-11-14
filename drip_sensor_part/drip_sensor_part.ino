@@ -38,7 +38,7 @@ typedef struct struct_message {
 struct_message myData;
 
 unsigned long lastTime = 0;
-unsigned long timerDelay = 5000;
+unsigned long timerDelay = 1000;   //5000 before
 
 // Callback when data is sent
 //void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
@@ -104,9 +104,8 @@ void loop() {
     lastTime = millis();
   }
 //int working = lastReading;
-delay(2000);
+//delay(2000);     //uncommented before
 /*  Blynk.run();
   Blynk.virtualWrite(V0,lastReading);
   delay(3000);*/
 }
-
