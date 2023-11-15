@@ -80,40 +80,48 @@ void loop()
   int board2X = boardsStruct[1].x;
   int space1 = board1X;
   int space2 = board2X;
+
+  bool space1On = space1 > 3 && space1 < 10;
+  bool space2On = space2 > 3 && space2 < 10;
   
-  if (space1 > 3 && space1 < 10) {
+  if (space1On) {
     // Turn on the red LED (s1r) and turn off the green LED (s1g)
     digitalWrite(s1g, LOW);
     digitalWrite(s1r, HIGH);
-    digitalWrite(buzz, HIGH);
+    //digitalWrite(buzz, HIGH);
   } 
   
   else if (space1 >= 11) {
     // Turn on the green LED (s1g) and turn off the red LED (s1r)
     digitalWrite(s1r, LOW);
     digitalWrite(s1g, HIGH);
-    digitalWrite(buzz, LOW);
+    //digitalWrite(buzz, LOW);
   } 
   
-  if (space2 > 3 && space2 < 10) {
+  if (space2On) {
     // Turn on the red LED (s1r) and turn off the green LED (s1g)
     digitalWrite(s2g, LOW);
     digitalWrite(s2r, HIGH);
-    digitalWrite(buzz, HIGH);
+    //digitalWrite(buzz, HIGH);
   } 
   
   else if (space2 >= 11) {
     // Turn on the green LED (s1g) and turn off the red LED (s1r)
     digitalWrite(s2r, LOW);
     digitalWrite(s2g, HIGH);
+    //digitalWrite(buzz, LOW);
+  }
+
+  if (space1On || space2On)
+    digitalWrite(buzz, HIGH);
+  else
     digitalWrite(buzz, LOW);
-  } 
   
   if (space1 < 3 && space2 < 3) {
     // Turn off both LEDs when b is zero
     digitalWrite(s1r, LOW);
     digitalWrite(s1g, LOW);
-    digitalWrite(buzz, LOW);
+    //digitalWrite(buzz, LOW);
     digitalWrite(s2r, LOW);
     digitalWrite(s2g, LOW);
   }
