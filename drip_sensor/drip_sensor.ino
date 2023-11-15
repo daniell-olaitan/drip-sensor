@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <Arduino.h>
+#include <espnow.h>
 
 
 // Define GPIO pins for control
@@ -117,12 +118,15 @@ void loop()
   else
     digitalWrite(buzz, LOW);
   
-  if (space1 < 3 && space2 < 3) {
+  if (space1 < 3) {
     // Turn off both LEDs when b is zero
     digitalWrite(s1r, LOW);
     digitalWrite(s1g, LOW);
     //digitalWrite(buzz, LOW);
+  }
+
+  if (space2 < 3) {
     digitalWrite(s2r, LOW);
     digitalWrite(s2g, LOW);
   }
- }
+}
